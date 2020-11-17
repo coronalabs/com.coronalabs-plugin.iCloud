@@ -1,0 +1,42 @@
+settings =
+{
+	orientation =
+	{
+		-- default = "landscapeLeft",
+		default = "portrait",
+		supported = { "landscapeLeft", "landscapeRight", "portrait" },
+	},
+
+	plugins =
+	{
+		["plugin.iCloud"] =
+		{
+			publisherId = "com.coronalabs"
+		},
+	},
+
+	iphone =
+	{
+		iCloud = true,
+		xcassets = "Images.xcassets",
+		plist =
+		{
+			UILaunchStoryboardName = "LaunchScreen",
+			ITSAppUsesNonExemptEncryption = false, -- This sample doesn't use custom encryption
+		},
+	},
+	tvos =
+	{
+		-- Enabling iCloud
+		iCloud = true,
+		xcassets = "Images.xcassets",
+		plist =
+		{
+			ITSAppUsesNonExemptEncryption = false, -- This sample doesn't use custom encryption
+		},
+	},
+	plugins =
+	{
+		["plugin.iCloud"] = { publisherId = "com.coronalabs" },
+	},
+}

@@ -1,1 +1,4 @@
 plugins/*.tgz
+*xcuser*
+build/
+src/mac/plugin_iCloud.dylib
