@@ -251,7 +251,7 @@ local function FetchFile( event )
 	native.setKeyboardFocus( nil )
 
 	text.text = "Fetching File"
-	iCloud.recordFetchFile{
+	iCloud.recordFetchFile({
 		listener = function( event )
 			print("File event")
 			print(json.prettify(event))
@@ -261,7 +261,7 @@ local function FetchFile( event )
 		database = "public",
 		recordName = "testFile123",
 		pathForFile = system.pathForFile( "testFile123.png", system.DocumentsDirectory ),
-	}
+	})
 end
 
 function scene:create( event )

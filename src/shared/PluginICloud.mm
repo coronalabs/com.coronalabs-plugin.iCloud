@@ -2439,7 +2439,7 @@ PluginICloud::recordFetchFile( lua_State *L )
                     CoronaLuaDispatchEvent( L, listener, 0 );
 
                 } else {
-                    CreateRecordEvent( L, "recordFetchFile", true, nil);
+                    CreateRecordEvent( L, "zoneOwner", true, nil);
                     lua_pushstring(L, recordID.recordName.UTF8String);
                     lua_setfield( L, -2, "recordName");
                     lua_pushstring(L, recordID.zoneID.zoneName.UTF8String);

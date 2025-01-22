@@ -39,6 +39,7 @@ class PluginICloud
 		static const char kKVSEvent[];
 		static const char kDocEvent[];
 		static const char kRecordEvent[];
+        static const char kFileEvent[];
 
 	protected:
 		PluginICloud();
@@ -176,6 +177,7 @@ const char PluginICloud::kName[] = "plugin.iCloud";
 const char PluginICloud::kKVSEvent[] = "iCloudKVSEvent";
 const char PluginICloud::kDocEvent[] = "iCloudDocEvent";
 const char PluginICloud::kRecordEvent[] = "iCloudRecordEvent";
+const char PluginICloud::kFileEvent[] = "iCloudFileEvent";
 
 PluginICloud::PluginICloud()
 : fListener( NULL )
@@ -2333,7 +2335,7 @@ PluginICloud::recordFetchFile( lua_State *L )
     }
     
     lua_getfield(L, index, "listener");
-    if (CoronaLuaIsListener(L, -1, kRecordEvent)) {
+    if (CoronaLuaIsListener(L, -1, kFileEvent)) {
         listener = CoronaLuaNewRef(L, -1);
     }
     lua_pop(L, 1);
@@ -2374,29 +2376,9 @@ PluginICloud::recordFetchFile( lua_State *L )
     CKFetchRecordsOperation *fetchOperation = [[CKFetchRecordsOperation alloc] initWithRecordIDs:@[recId]];
     fetchOperation.desiredKeys = @[fieldKey];
     [fetchOperation setDatabase:database];
-    [[CKContainer defaultContainer] accountStatusWithCompletionHandler:^(CKAccountStatus accountStatus, NSError * _Nullable error) {
-        if (error) {
-            NSLog(@"Error checking iCloud account status: %@", error.localizedDescription);
-        } else {
-            switch (accountStatus) {
-                case CKAccountStatusAvailable:
-                    NSLog(@"iCloud account is available");
-                    break;
-                case CKAccountStatusNoAccount:
-                    NSLog(@"No iCloud account is logged in");
-                    break;
-                case CKAccountStatusRestricted:
-                    NSLog(@"iCloud is restricted");
-                    break;
-                case CKAccountStatusCouldNotDetermine:
-                    NSLog(@"Could not determine iCloud account status");
-                    break;
-            }
-        }
-    }];
     [fetchOperation setPerRecordProgressBlock:^(CKRecordID * _Nonnull recordID, double progress) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            CreateRecordEvent(L, "recordFetchFile", true, nil);
+            CreateRecordEvent(L, kFileEvent, true, nil);
             lua_pushstring(L, recordID.recordName.UTF8String);
             lua_setfield(L, -2, "recordName");
             lua_pushstring(L, recordID.zoneID.zoneName.UTF8String);
@@ -2412,7 +2394,7 @@ PluginICloud::recordFetchFile( lua_State *L )
     fetchOperation.perRecordCompletionBlock = ^(CKRecord *record, CKRecordID *recordID, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (error) {
-                CreateRecordEvent(L, "recordFetchFile", true, nil);
+                CreateRecordEvent(L, kFileEvent, true, nil);
                 lua_pushstring(L, recordID.recordName.UTF8String);
                 lua_setfield(L, -2, "recordName");
                 lua_pushstring(L, recordID.zoneID.zoneName.UTF8String);
@@ -2434,7 +2416,7 @@ PluginICloud::recordFetchFile( lua_State *L )
                     NSError *copyError = nil;
 
                     if ([fileManager copyItemAtURL:fileURL toURL:destinationURL error:&copyError]) {
-                        CreateRecordEvent(L, "recordFetchFile", true, nil);
+                        CreateRecordEvent(L, kFileEvent, true, nil);
                         lua_pushstring(L, recordID.recordName.UTF8String);
                         lua_setfield(L, -2, "recordName");
                         lua_pushstring(L, recordID.zoneID.zoneName.UTF8String);
@@ -2446,7 +2428,7 @@ PluginICloud::recordFetchFile( lua_State *L )
 
                         CoronaLuaDispatchEvent(L, listener, 0);
                     } else {
-                        CreateRecordEvent(L, "recordFetchFile", true, nil);
+                        CreateRecordEvent(L, kFileEvent, true, nil);
                         lua_pushstring(L, recordID.recordName.UTF8String);
                         lua_setfield(L, -2, "recordName");
                         lua_pushstring(L, recordID.zoneID.zoneName.UTF8String);
@@ -2469,7 +2451,7 @@ PluginICloud::recordFetchFile( lua_State *L )
     fetchOperation.fetchRecordsCompletionBlock = ^(NSDictionary<CKRecordID *, CKRecord *> *recordsByRecordID, NSError *operationError) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (operationError) {
-                CreateRecordEvent(L, "recordFetchFile", true, nil);
+                CreateRecordEvent(L, kFileEvent, true, nil);
                 lua_pushstring(L, "operation");
                 lua_setfield(L, -2, "recordName");
                 lua_pushstring(L, "error");
