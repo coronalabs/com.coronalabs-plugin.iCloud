@@ -1,16 +1,16 @@
 //
-//  Corona_plugin_iCloud.h
-//  Corona_plugin_iCloud
+//  Corona_plugin_library.h
+//  Corona_plugin_library
 //
 
 #import <UIKit/UIKit.h>
 
-//! Project version number for Corona_plugin_iCloud.
+//! Project version number for Corona_plugin_library.
 FOUNDATION_EXPORT double Corona_plugin_iCloudVersionNumber;
 
-//! Project version string for Corona_plugin_iCloud.
+//! Project version string for Corona_plugin_library.
 FOUNDATION_EXPORT const unsigned char Corona_plugin_iCloudVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <Corona_plugin_iCloud/PublicHeader.h>
+// In this header, you should import all the public headers of your framework using statements like #import <Corona_plugin_library/PublicHeader.h>
 
-#import <Corona_plugin_iCloud/PluginICloud.h>
+

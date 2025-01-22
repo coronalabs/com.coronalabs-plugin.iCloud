@@ -33,6 +33,7 @@ lib.recordFetchMultiple = showWarning
 lib.recordQuery = showWarning
 lib.recordDelete = showWarning
 lib.recordCreateZone = showWarning
+lib.recordFetchFile = showWarning
 
 -------------------------------------------------------------------------------
 -- END

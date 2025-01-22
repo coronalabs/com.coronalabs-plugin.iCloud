@@ -244,7 +244,25 @@ local function FetchOnly( event )
 	}
 end
 
+local function FetchFile( event )
+	if ( event and "ended" ~= event.phase ) then
+		return
+	end
+	native.setKeyboardFocus( nil )
 
+	text.text = "Fetching File"
+	iCloud.recordFetchFile{
+		listener = function( event )
+			print("File event")
+			print(json.prettify(event))
+			
+		end,
+		fieldKey = "asset",
+		database = "public",
+		recordName = "testFile123",
+		pathForFile = system.pathForFile( "testFile123.png", system.DocumentsDirectory ),
+	}
+end
 
 function scene:create( event )
 
@@ -269,6 +287,17 @@ function scene:create( event )
 		y = display.contentHeight*0.25,
 		label = "Fetch Only",
 		onEvent = FetchOnly,
+	}
+	sceneGroup:insert(btn)
+	focusEngineObjects[#focusEngineObjects+1] = btn
+
+	btn = widget.newButton
+	{
+		parent = sceneGroup,
+		x = display.contentCenterX,
+		y = display.contentHeight*0.35,
+		label = "Get Image",
+		onEvent = FetchFile,
 	}
 	sceneGroup:insert(btn)
 	focusEngineObjects[#focusEngineObjects+1] = btn

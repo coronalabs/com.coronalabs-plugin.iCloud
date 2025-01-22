@@ -2325,145 +2325,172 @@ PluginICloud::recordFetchFile( lua_State *L )
 {
     
     CoronaLuaRef listener = NULL;
-    
     int index = 1;
     
-    if ( !lua_istable( L, index) )
-    {
-        CoronaLuaWarning( L, "iCloud.recordFetchFile() - didn't receive parameters table");
+    if (!lua_istable(L, index)) {
+        CoronaLuaWarning(L, "iCloud.recordFetchFile() - didn't receive parameters table");
         return 0;
     }
-
     
-    lua_getfield( L, index, "listener" );
-    if( CoronaLuaIsListener( L, -1, kRecordEvent ) )
-    {
-        listener = CoronaLuaNewRef( L, -1 );
+    lua_getfield(L, index, "listener");
+    if (CoronaLuaIsListener(L, -1, kRecordEvent)) {
+        listener = CoronaLuaNewRef(L, -1);
     }
-    lua_pop( L, 1 );
+    lua_pop(L, 1);
     
-    CKDatabase *database = GetDatabase( L, index );
+    CKDatabase *database = GetDatabase(L, index);
     CKRecordID *recId = NewRecordID(L, index);
-    NSString * fieldKey = @"";
-    lua_getfield( L, index, "fieldKey" );
-    if(lua_type( L, -1) == LUA_TSTRING )
-    {
-        fieldKey = [NSString stringWithUTF8String:lua_tostring( L, -1 )];
-    }else{
-        CoronaLuaWarning( L, "iCloud.recordFetch() fieldKey - invalid parameters");
-    }
-    lua_pop( L, 1 );
-    NSString * pathForFile = @"";
-    lua_getfield( L, index, "pathForFile" );
-    if(lua_type( L, -1) == LUA_TSTRING )
-    {
-        pathForFile = [NSString stringWithUTF8String:lua_tostring( L, -1 )];
-    }else{
-        CoronaLuaWarning( L, "iCloud.recordFetch() pathForFile - invalid parameters");
-    }
-    lua_pop( L, 1 );
     
-    if (!listener || !recId || !database)
-    {
-        CoronaLuaWarning( L, "iCloud.recordFetch() - invalid parameters");
-        if (listener)
-        {
-            CoronaLuaDeleteRef( L, listener );
-        }
+    // Validate database and record ID
+    if (!database || !recId) {
+        CoronaLuaWarning(L, "iCloud.recordFetchFile() - invalid database or record ID");
+        if (listener) CoronaLuaDeleteRef(L, listener);
+        if (recId) [recId release];
         return 0;
     }
+    
+    // Fetch fieldKey
+    NSString *fieldKey = nil;
+    lua_getfield(L, index, "fieldKey");
+    if (lua_type(L, -1) == LUA_TSTRING) {
+        fieldKey = [NSString stringWithUTF8String:lua_tostring(L, -1)];
+    }
+    lua_pop(L, 1);
+    if (!fieldKey || [fieldKey length] == 0) {
+        CoronaLuaWarning(L, "iCloud.recordFetchFile() - fieldKey is missing or invalid");
+        if (listener) CoronaLuaDeleteRef(L, listener);
+        if (recId) [recId release];
+        return 0;
+    }
+    
+    // Fetch pathForFile
+    NSString *pathForFile = nil;
+    lua_getfield(L, index, "pathForFile");
+    if (lua_type(L, -1) == LUA_TSTRING) {
+        pathForFile = [NSString stringWithUTF8String:lua_tostring(L, -1)];
+    }
+    lua_pop(L, 1);
+    
     CKFetchRecordsOperation *fetchOperation = [[CKFetchRecordsOperation alloc] initWithRecordIDs:@[recId]];
-        
-    // Specify which keys you want to fetch
     fetchOperation.desiredKeys = @[fieldKey];
-    fetchOperation.perRecordProgressBlock = ^(CKRecordID *recordID, double progress) {
-            // Update progress on the main thread
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-                CreateRecordEvent( L, "recordFetchFile", true, nil);
-                lua_pushstring(L, recordID.recordName.UTF8String);
-                lua_setfield( L, -2, "recordName");
-                lua_pushstring(L, recordID.zoneID.zoneName.UTF8String);
-                lua_setfield( L, -2, "zoneName");
-                lua_pushstring(L, "progress");
-                lua_setfield( L, -2, "status");
-                lua_pushnumber(L, progress * 100);
-                lua_setfield( L, -2, "progress");
-                
-                CoronaLuaDispatchEvent( L, listener, 0 );
-                
-            });
-        };
-        
-    // Per record completion block
-    fetchOperation.perRecordCompletionBlock = ^(CKRecord *record, CKRecordID *recordID, NSError *error) {
+    [fetchOperation setDatabase:database];
+    [[CKContainer defaultContainer] accountStatusWithCompletionHandler:^(CKAccountStatus accountStatus, NSError * _Nullable error) {
         if (error) {
-            CreateRecordEvent( L, "recordFetchFile", true, nil);
-            lua_pushstring(L, recordID.recordName.UTF8String);
-            lua_setfield( L, -2, "recordName");
-            lua_pushstring(L, recordID.zoneID.zoneName.UTF8String);
-            lua_setfield( L, -2, "zoneName");
-            lua_pushstring(L, "error");
-            lua_setfield( L, -2, "status");
-            lua_pushstring(L, error.localizedDescription.UTF8String);
-            lua_setfield( L, -2, "error");
-            lua_pushinteger(L, error.code);
-            lua_setfield( L, -2, "errorCode");
-
-            
-            CoronaLuaDispatchEvent( L, listener, 0 );
+            NSLog(@"Error checking iCloud account status: %@", error.localizedDescription);
         } else {
-            // Access the CKAsset
-            CKAsset *asset = record[fieldKey]; // Replace with your asset field key
-            if (asset) {
-                NSURL *fileURL = asset.fileURL;
-                NSFileManager *fileManager = [NSFileManager defaultManager];
-
-                // Convert the destination path to an NSURL
-                NSURL *destinationURL = [NSURL fileURLWithPath:pathForFile];
-
-                // Perform the copy
-                NSError *error = nil;
-                if ([fileManager copyItemAtURL:fileURL toURL:destinationURL error:&error]) {
-                    CreateRecordEvent( L, "recordFetchFile", true, nil);
-                    lua_pushstring(L, recordID.recordName.UTF8String);
-                    lua_setfield( L, -2, "recordName");
-                    lua_pushstring(L, recordID.zoneID.zoneName.UTF8String);
-                    lua_setfield( L, -2, "zoneName");
-                    lua_pushstring(L, "complete");
-                    lua_setfield( L, -2, "status");
-                    lua_pushstring(L, pathForFile.UTF8String);
-                    lua_setfield( L, -2, "path");
-                    
-                    
-                    CoronaLuaDispatchEvent( L, listener, 0 );
-
-                } else {
-                    CreateRecordEvent( L, "recordFetchFile", true, nil);
-                    lua_pushstring(L, recordID.recordName.UTF8String);
-                    lua_setfield( L, -2, "recordName");
-                    lua_pushstring(L, recordID.zoneID.zoneName.UTF8String);
-                    lua_setfield( L, -2, "zoneName");
-                    lua_pushstring(L, "error");
-                    lua_setfield( L, -2, "status");
-                    lua_pushstring(L, error.localizedDescription.UTF8String);
-                    lua_setfield( L, -2, "error");
-                    lua_pushinteger(L, error.code);
-                    lua_setfield( L, -2, "errorCode");
-
-                    
-                    CoronaLuaDispatchEvent( L, listener, 0 );
-                }
-                
-                
-            } else {
-                NSLog(@"Asset field is nil.");
+            switch (accountStatus) {
+                case CKAccountStatusAvailable:
+                    NSLog(@"iCloud account is available");
+                    break;
+                case CKAccountStatusNoAccount:
+                    NSLog(@"No iCloud account is logged in");
+                    break;
+                case CKAccountStatusRestricted:
+                    NSLog(@"iCloud is restricted");
+                    break;
+                case CKAccountStatusCouldNotDetermine:
+                    NSLog(@"Could not determine iCloud account status");
+                    break;
             }
         }
+    }];
+    [fetchOperation setPerRecordProgressBlock:^(CKRecordID * _Nonnull recordID, double progress) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            CreateRecordEvent(L, "recordFetchFile", true, nil);
+            lua_pushstring(L, recordID.recordName.UTF8String);
+            lua_setfield(L, -2, "recordName");
+            lua_pushstring(L, recordID.zoneID.zoneName.UTF8String);
+            lua_setfield(L, -2, "zoneName");
+            lua_pushstring(L, "progress");
+            lua_setfield(L, -2, "status");
+            lua_pushnumber(L, progress * 100);
+            lua_setfield(L, -2, "progress");
+            
+            CoronaLuaDispatchEvent(L, listener, 0);
+        });
+    }];
+    fetchOperation.perRecordCompletionBlock = ^(CKRecord *record, CKRecordID *recordID, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error) {
+                CreateRecordEvent(L, "recordFetchFile", true, nil);
+                lua_pushstring(L, recordID.recordName.UTF8String);
+                lua_setfield(L, -2, "recordName");
+                lua_pushstring(L, recordID.zoneID.zoneName.UTF8String);
+                lua_setfield(L, -2, "zoneName");
+                lua_pushstring(L, "error");
+                lua_setfield(L, -2, "status");
+                lua_pushstring(L, error.localizedDescription.UTF8String);
+                lua_setfield(L, -2, "error");
+                lua_pushinteger(L, error.code);
+                lua_setfield(L, -2, "errorCode");
+
+                CoronaLuaDispatchEvent(L, listener, 0);
+            } else {
+                CKAsset *asset = record[fieldKey];
+                if (asset && pathForFile) {
+                    NSURL *fileURL = asset.fileURL;
+                    NSURL *destinationURL = [NSURL fileURLWithPath:pathForFile];
+                    NSFileManager *fileManager = [NSFileManager defaultManager];
+                    NSError *copyError = nil;
+
+                    if ([fileManager copyItemAtURL:fileURL toURL:destinationURL error:&copyError]) {
+                        CreateRecordEvent(L, "recordFetchFile", true, nil);
+                        lua_pushstring(L, recordID.recordName.UTF8String);
+                        lua_setfield(L, -2, "recordName");
+                        lua_pushstring(L, recordID.zoneID.zoneName.UTF8String);
+                        lua_setfield(L, -2, "zoneName");
+                        lua_pushstring(L, "complete");
+                        lua_setfield(L, -2, "status");
+                        lua_pushstring(L, pathForFile.UTF8String);
+                        lua_setfield(L, -2, "path");
+
+                        CoronaLuaDispatchEvent(L, listener, 0);
+                    } else {
+                        CreateRecordEvent(L, "recordFetchFile", true, nil);
+                        lua_pushstring(L, recordID.recordName.UTF8String);
+                        lua_setfield(L, -2, "recordName");
+                        lua_pushstring(L, recordID.zoneID.zoneName.UTF8String);
+                        lua_setfield(L, -2, "zoneName");
+                        lua_pushstring(L, "error");
+                        lua_setfield(L, -2, "status");
+                        lua_pushstring(L, copyError.localizedDescription.UTF8String);
+                        lua_setfield(L, -2, "error");
+                        lua_pushinteger(L, copyError.code);
+                        lua_setfield(L, -2, "errorCode");
+
+                        CoronaLuaDispatchEvent(L, listener, 0);
+                    }
+                } else {
+                    CoronaLuaWarning(L, "iCloud.recordFetchFile() - Asset field is nil or pathForFile is invalid");
+                }
+            }
+        });
     };
-        
-    [database addOperation:fetchOperation];
+    fetchOperation.fetchRecordsCompletionBlock = ^(NSDictionary<CKRecordID *, CKRecord *> *recordsByRecordID, NSError *operationError) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (operationError) {
+                CreateRecordEvent(L, "recordFetchFile", true, nil);
+                lua_pushstring(L, "operation");
+                lua_setfield(L, -2, "recordName");
+                lua_pushstring(L, "error");
+                lua_setfield(L, -2, "status");
+                lua_pushstring(L, operationError.localizedDescription.UTF8String);
+                lua_setfield(L, -2, "error");
+                lua_pushinteger(L, operationError.code);
+                lua_setfield(L, -2, "errorCode");
+
+                CoronaLuaDispatchEvent(L, listener, 0);
+            } else {
+                NSLog(@"Fetch operation completed successfully.");
+            }
+        });
+    };
+    
+    // Add the operation to the database
+    [fetchOperation start];
+    [fetchOperation release];
     [recId release];
+
     return 0;
 }
 

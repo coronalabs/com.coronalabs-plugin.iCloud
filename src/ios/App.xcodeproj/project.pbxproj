@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		F597AC6E1ED8CA3E0085F5E5 /* Download Plugins */ = {
+		DB3D9C082989D259002A3B7E /* Download Plugins */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = F597AC6F1ED8CA3E0085F5E5 /* Build configuration list for PBXAggregateTarget "Download Plugins" */;
+			buildConfigurationList = DB3D9C0B2989D25B002A3B7E /* Build configuration list for PBXAggregateTarget "Download Plugins" */;
 			buildPhases = (
-				F597AC721ED8CA480085F5E5 /* Download Plugins */,
+				DB3D9C0C2989D2CE002A3B7E /* Download Plugins */,
 			);
 			dependencies = (
 			);
@@ -51,7 +51,6 @@
 		A484118615128D5D0074BD57 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A484117215128D5D0074BD57 /* OpenAL.framework */; };
 		A484118715128D5D0074BD57 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A484117315128D5D0074BD57 /* QuartzCore.framework */; };
 		A484118815128D5D0074BD57 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A484117415128D5D0074BD57 /* Security.framework */; };
-		A484118915128D5D0074BD57 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A484117515128D5D0074BD57 /* StoreKit.framework */; };
 		A484118A15128D5D0074BD57 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A484117615128D5D0074BD57 /* SystemConfiguration.framework */; };
 		A48411CA15129F610074BD57 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A48411C915129F610074BD57 /* libsqlite3.dylib */; };
 		A498B81A16D70EFC0091A148 /* CoronaResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A498B81916D70EFC0091A148 /* CoronaResources.bundle */; };
@@ -59,11 +58,11 @@
 		A4C2449C1683FA5300C395D1 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C244991683FA5300C395D1 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A4E2537F166AE3DC00DCDC2C /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E2537E166AE3DC00DCDC2C /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C22C1E4B1E981D9000D74196 /* LaunchScreen.storyboardc in Resources */ = {isa = PBXBuildFile; fileRef = C22C1E4A1E981D9000D74196 /* LaunchScreen.storyboardc */; };
+		DB4BDC552D404D0A00C57ECD /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4BDC542D404D0A00C57ECD /* CloudKit.framework */; };
 		E640B2F21BFC00B00031FAE9 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E640B2F11BFC00B00031FAE9 /* AssetsLibrary.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E640B2F41BFC00BA0031FAE9 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E640B2F31BFC00BA0031FAE9 /* Photos.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		F51C66D61EE0D3B20040E4BE /* libplugin_library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E253E2166DE7C800DCDC2C /* libplugin_library.a */; };
 		F56457D91FA108F500EC8C29 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F56712391F73451B006B502D /* Images.xcassets */; };
-		F5BB2F5F256471DC0069695D /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5BB2F5E256471DC0069695D /* CloudKit.framework */; };
 		F5BB41531BC42ACF0033F6FA /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5BB41521BC42ACF0033F6FA /* CoreText.framework */; };
 		F5C9F4811ED39AD100D34A2D /* _CoronaSplashScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = C277D3B51EBB9F8E00966BA1 /* _CoronaSplashScreen.png */; };
 		F5E548091BE7FF0200091810 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5E548081BE7FF0200091810 /* GameController.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -122,7 +121,6 @@
 		A484117215128D5D0074BD57 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		A484117315128D5D0074BD57 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A484117415128D5D0074BD57 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		A484117515128D5D0074BD57 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A484117615128D5D0074BD57 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A48411C915129F610074BD57 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		A498B81916D70EFC0091A148 /* CoronaResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = CoronaResources.bundle; path = Corona/ios/resource/CoronaResources.bundle; sourceTree = "<group>"; };
@@ -132,6 +130,9 @@
 		A4E253DA166DE7C800DCDC2C /* Plugin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Plugin.xcodeproj; sourceTree = "<group>"; };
 		C22C1E4A1E981D9000D74196 /* LaunchScreen.storyboardc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.storyboardc; name = LaunchScreen.storyboardc; path = ../Corona/LaunchScreen.storyboardc; sourceTree = "<group>"; };
 		C277D3B51EBB9F8E00966BA1 /* _CoronaSplashScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = _CoronaSplashScreen.png; sourceTree = "<group>"; };
+		DB4BDC522D404CE100C57ECD /* ClockKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ClockKit.framework; path = System/Library/Frameworks/ClockKit.framework; sourceTree = SDKROOT; };
+		DB4BDC542D404D0A00C57ECD /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		DB4BDC562D4083B600C57ECD /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
 		E640B2F11BFC00B00031FAE9 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		E640B2F31BFC00BA0031FAE9 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		F54A40BD1EE07F9100AF417D /* build.settings */ = {isa = PBXFileReference; lastKnownFileType = text; name = build.settings; path = ../Corona/build.settings; sourceTree = "<group>"; };
@@ -139,8 +140,6 @@
 		F55829801ED23E1200E5808C /* CoronaApp.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = CoronaApp.xcconfig; sourceTree = "<group>"; };
 		F56712391F73451B006B502D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Corona/Images.xcassets; sourceTree = "<group>"; };
 		F572F8191EE06E45001BC814 /* CoronaNative.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CoronaNative.xcconfig; sourceTree = "<group>"; };
-		F5BB2F5D256471C70069695D /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
-		F5BB2F5E256471DC0069695D /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		F5BB41521BC42ACF0033F6FA /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		F5E548081BE7FF0200091810 /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = System/Library/Frameworks/GameController.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -170,8 +169,8 @@
 				A484112015114F700074BD57 /* Foundation.framework in Frameworks */,
 				A484117F15128D5D0074BD57 /* GameKit.framework in Frameworks */,
 				F5E548091BE7FF0200091810 /* GameController.framework in Frameworks */,
+				DB4BDC552D404D0A00C57ECD /* CloudKit.framework in Frameworks */,
 				A484118015128D5D0074BD57 /* ImageIO.framework in Frameworks */,
-				F5BB2F5F256471DC0069695D /* CloudKit.framework in Frameworks */,
 				A484118115128D5D0074BD57 /* libobjc.dylib in Frameworks */,
 				A48411CA15129F610074BD57 /* libsqlite3.dylib in Frameworks */,
 				A484118215128D5D0074BD57 /* MapKit.framework in Frameworks */,
@@ -182,7 +181,6 @@
 				A484112615114F700074BD57 /* OpenGLES.framework in Frameworks */,
 				A484118715128D5D0074BD57 /* QuartzCore.framework in Frameworks */,
 				A484118815128D5D0074BD57 /* Security.framework in Frameworks */,
-				A484118915128D5D0074BD57 /* StoreKit.framework in Frameworks */,
 				A484118A15128D5D0074BD57 /* SystemConfiguration.framework in Frameworks */,
 				A4E2537F166AE3DC00DCDC2C /* Twitter.framework in Frameworks */,
 				A484111E15114F700074BD57 /* UIKit.framework in Frameworks */,
@@ -235,7 +233,8 @@
 		A484111C15114F700074BD57 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F5BB2F5E256471DC0069695D /* CloudKit.framework */,
+				DB4BDC542D404D0A00C57ECD /* CloudKit.framework */,
+				DB4BDC522D404CE100C57ECD /* ClockKit.framework */,
 				E640B2F31BFC00BA0031FAE9 /* Photos.framework */,
 				E640B2F11BFC00B00031FAE9 /* AssetsLibrary.framework */,
 				F5E548081BE7FF0200091810 /* GameController.framework */,
@@ -266,7 +265,6 @@
 				A484112515114F700074BD57 /* OpenGLES.framework */,
 				A484117315128D5D0074BD57 /* QuartzCore.framework */,
 				A484117415128D5D0074BD57 /* Security.framework */,
-				A484117515128D5D0074BD57 /* StoreKit.framework */,
 				A484117615128D5D0074BD57 /* SystemConfiguration.framework */,
 				A4E2537E166AE3DC00DCDC2C /* Twitter.framework */,
 				A484111D15114F700074BD57 /* UIKit.framework */,
@@ -277,7 +275,7 @@
 		A484112715114F700074BD57 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				F5BB2F5D256471C70069695D /* App.entitlements */,
+				DB4BDC562D4083B600C57ECD /* App.entitlements */,
 				F56712391F73451B006B502D /* Images.xcassets */,
 				C277D3B51EBB9F8E00966BA1 /* _CoronaSplashScreen.png */,
 				A484112915114F700074BD57 /* App-Info.plist */,
@@ -344,11 +342,11 @@
 				LastUpgradeCheck = 0820;
 				TargetAttributes = {
 					A484111815114F700074BD57 = {
-						DevelopmentTeam = BG2J43EA88;
+						DevelopmentTeam = A6QFRGXX8S;
 					};
-					F597AC6E1ED8CA3E0085F5E5 = {
-						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = BG2J43EA88;
+					DB3D9C082989D259002A3B7E = {
+						CreatedOnToolsVersion = 14.2;
+						DevelopmentTeam = A6QFRGXX8S;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -373,7 +371,7 @@
 			projectRoot = "";
 			targets = (
 				A484111815114F700074BD57 /* App */,
-				F597AC6E1ED8CA3E0085F5E5 /* Download Plugins */,
+				DB3D9C082989D259002A3B7E /* Download Plugins */,
 			);
 		};
 /* End PBXProject section */
@@ -452,20 +450,24 @@
 			shellScript = "# echo \"CORONA_ROOT: ${CORONA_ROOT}\"\nif [ ! -d \"${CORONA_ROOT}\" ]\nthen\necho \"error: Corona Native has not been setup.  Run 'Native/SetupCoronaNative.app' in your Corona install to set it up\" >&2\n\nexit 1\nelse\necho \"Building with Corona Native from $(readlink \"${CORONA_ROOT}\")\"\nfi\n\n# Check for difficult to debug error involving an item in the Corona\n# project directory having the same name as a file in the app bundle\nif [ -d \"${PROJECT_DIR}/../Corona/${EXECUTABLE_NAME}\" ]\nthen\necho \"ERROR: cannot have a directory called '$(ls \"${PROJECT_DIR}/../Corona\" | grep -iw ${EXECUTABLE_NAME})' in the Corona project directory because it has the same name as the app\"\nexit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		F597AC721ED8CA480085F5E5 /* Download Plugins */ = {
+		DB3D9C0C2989D2CE002A3B7E /* Download Plugins */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"$(SRCROOT)/../Corona",
 			);
 			name = "Download Plugins";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\nBUILDER_PATH=\"$CORONA_ROOT\"/Corona/mac/bin/CoronaBuilder.app/Contents/MacOS/CoronaBuilder\n\n\"$BUILDER_PATH\" plugins download ios \"$PROJECT_DIR/../Corona/build.settings\" \"$PROJECT_DIR/CoronaApp.xcconfig\" $CORONA_FORCE_LOAD\n\nif [ $? -ne 0 ]\nthen\n    echo \"Exiting due to errors (above)\"\n    exit -1\nfi\n\ntouch \"$SRCROOT/../Corona\"";
+			shellScript = "\nBUILDER_PATH=\"$CORONA_ROOT\"/Corona/mac/bin/CoronaBuilder.app/Contents/MacOS/CoronaBuilder\n\n\"$BUILDER_PATH\" plugins download ios \"$PROJECT_DIR/../Corona/build.settings\" \"$PROJECT_DIR/CoronaApp.xcconfig\" $CORONA_FORCE_LOAD\n\nif [ $? -ne 0 ]\nthen\n    echo \"Exiting due to errors (above)\"\n    exit -1\nfi\n\ntouch \"$SRCROOT/../Corona\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -590,13 +592,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = App.entitlements;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = BG2J43EA88;
+				DEVELOPMENT_TEAM = A6QFRGXX8S;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Prefix.pch;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = "App-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = com.coronalabs.iCloudTestApp;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.scotth.coronaPlugin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SEPARATE_STRIP = YES;
 				STRIP_INSTALLED_PRODUCT = YES;
@@ -612,13 +615,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = App.entitlements;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = BG2J43EA88;
+				DEVELOPMENT_TEAM = A6QFRGXX8S;
 				GCC_OPTIMIZATION_LEVEL = 2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = "App-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = com.coronalabs.iCloudTestApp;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.scotth.coronaPlugin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SEPARATE_STRIP = YES;
 				STRIP_INSTALLED_PRODUCT = YES;
@@ -627,20 +631,22 @@
 			};
 			name = Release;
 		};
-		F597AC701ED8CA3E0085F5E5 /* Debug */ = {
+		DB3D9C092989D25B002A3B7E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F572F8191EE06E45001BC814 /* CoronaNative.xcconfig */;
 			buildSettings = {
-				DEVELOPMENT_TEAM = BG2J43EA88;
+				CODE_SIGN_STYLE = Automatic;
+				CORONA_ROOT = "$HOME/Library/Application Support/Corona/Native";
+				DEVELOPMENT_TEAM = A6QFRGXX8S;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		F597AC711ED8CA3E0085F5E5 /* Release */ = {
+		DB3D9C0A2989D25B002A3B7E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F572F8191EE06E45001BC814 /* CoronaNative.xcconfig */;
 			buildSettings = {
-				DEVELOPMENT_TEAM = BG2J43EA88;
+				CODE_SIGN_STYLE = Automatic;
+				CORONA_ROOT = "$HOME/Library/Application Support/Corona/Native";
+				DEVELOPMENT_TEAM = A6QFRGXX8S;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -666,11 +672,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F597AC6F1ED8CA3E0085F5E5 /* Build configuration list for PBXAggregateTarget "Download Plugins" */ = {
+		DB3D9C0B2989D25B002A3B7E /* Build configuration list for PBXAggregateTarget "Download Plugins" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F597AC701ED8CA3E0085F5E5 /* Debug */,
-				F597AC711ED8CA3E0085F5E5 /* Release */,
+				DB3D9C092989D25B002A3B7E /* Debug */,
+				DB3D9C0A2989D25B002A3B7E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

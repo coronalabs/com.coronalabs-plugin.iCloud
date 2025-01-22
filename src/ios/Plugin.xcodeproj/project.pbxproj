@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A4E253C9166D716900DCDC2C /* PluginICloud.mm in Sources */ = {isa = PBXBuildFile; fileRef = A447B617165D734C009EA762 /* PluginICloud.mm */; };
+		DB4BDC512D404CC000C57ECD /* PluginICloud.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB4BDC502D404CC000C57ECD /* PluginICloud.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,11 +23,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A447B616165D734C009EA762 /* PluginICloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginICloud.h; sourceTree = "<group>"; };
-		A447B617165D734C009EA762 /* PluginICloud.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginICloud.mm; sourceTree = "<group>"; };
 		A4E253B6166D6FB300DCDC2C /* libplugin_iCloud.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libplugin_iCloud.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB4BDC4E2D404CC000C57ECD /* luna.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = luna.h; sourceTree = "<group>"; };
+		DB4BDC4F2D404CC000C57ECD /* PluginICloud.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PluginICloud.h; sourceTree = "<group>"; };
+		DB4BDC502D404CC000C57ECD /* PluginICloud.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginICloud.mm; sourceTree = "<group>"; };
 		F572F81A1EE0705B001BC814 /* CoronaNative.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CoronaNative.xcconfig; sourceTree = "<group>"; };
-		F5BB2F60256472270069695D /* luna.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = luna.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,12 +44,11 @@
 		A447B609165D72A6009EA762 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				F5BB2F60256472270069695D /* luna.h */,
-				A447B616165D734C009EA762 /* PluginICloud.h */,
-				A447B617165D734C009EA762 /* PluginICloud.mm */,
+				DB4BDC4E2D404CC000C57ECD /* luna.h */,
+				DB4BDC4F2D404CC000C57ECD /* PluginICloud.h */,
+				DB4BDC502D404CC000C57ECD /* PluginICloud.mm */,
 			);
 			name = Source;
-			path = ../shared;
 			sourceTree = "<group>";
 		};
 		A484110E15114F700074BD57 = {
@@ -147,7 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4E253C9166D716900DCDC2C /* PluginICloud.mm in Sources */,
+				DB4BDC512D404CC000C57ECD /* PluginICloud.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

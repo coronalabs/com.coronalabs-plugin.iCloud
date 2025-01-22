@@ -1,6 +1,0 @@
-framework module Corona_plugin_iCloud {
-  umbrella header "Corona_plugin_iCloud.h"
-
-  export *
-  module * { export * }
-}
