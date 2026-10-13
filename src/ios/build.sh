@@ -2,7 +2,7 @@
 
 path=$(cd "$(dirname "$0")"; pwd)
 
-TARGET_NAME=plugin_library
+TARGET_NAME=plugin_iCloud
 OUTPUT_SUFFIX=a
 CONFIG=Release
 
@@ -63,5 +63,5 @@ build_plugin_structure() {
 
 build_plugin_structure "$path/BuiltPlugin/iphone" iphoneos  " -extract armv7 -extract  arm64 "
 
-build_plugin_structure "$path/BuiltPlugin/iphone-sim" iphonesimulator  " -extract i386  -extract  x86_64 "
+build_plugin_structure "$path/BuiltPlugin/iphone-sim" iphonesimulator  " -extract arm64  -extract  x86_64 "
 

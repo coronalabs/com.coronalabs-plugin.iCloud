@@ -14,4 +14,6 @@ ENABLE_BITCODE = no
 //CORONA_FORCE_LOAD = --force-load
 //CORONA_CUSTOM_LDFLAGS = -force_load "$(BUILT_PRODUCTS_DIR)/libplugin_library.a"
 
-EXCLUDED_ARCHS[sdk=iphonesimulator*] = arm64
+// Simulator slice: Apple-silicon (arm64) and Intel (x86_64) — iOS 27 simulators are arm64-only.
+ARCHS[sdk=iphonesimulator*] = arm64 x86_64
+ONLY_ACTIVE_ARCH = NO
